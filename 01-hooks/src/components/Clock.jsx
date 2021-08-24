@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 const Clock = () => {
-	const [time, setTime] = useState("13:37:00")
+	const [time, setTime] = useState(() => {
+		const now = new Date()
+		return now.toLocaleTimeString()
+	})
 
 	useEffect(() => {
 		console.log("🕰🔨 Clock is mounted 😊 Timer started ⏲")
