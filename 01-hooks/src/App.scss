@@ -1,5 +1,9 @@
 @import "bootstrap/scss/bootstrap";
 
+html, body, #root, .App, .container, #clock-wrapper {
+	min-height: 100vh;
+}
+
 body {
 	background-color: #282c34;
 	color: white;
@@ -14,4 +18,14 @@ body a {
 	font-size: 1.5rem;
 	margin-left: 1rem;
 	margin-right: 1rem;
+}
+
+#clock-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#toggleClock {
+	cursor: pointer;
 }
