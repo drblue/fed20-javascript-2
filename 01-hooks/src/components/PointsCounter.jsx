@@ -16,6 +16,11 @@ const PointsCounter = () => {
 	// Class Lifecycle: componentDidMount
 	useEffect(() => {
 		console.log("I'm a newly mounted component 👶🏻")
+
+		return () => {
+			// Class Lifecycle: componentWillUnmount
+			console.log("🧹 I'm being unmounted, cleaning up after myself")
+		}
 	}, [])
 
 	// This will only be executed if `points` have changed,
