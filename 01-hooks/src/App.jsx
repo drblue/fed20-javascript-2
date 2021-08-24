@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import './App.scss'
+import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
 
 function App() {
 	const [homePoints, setHomePoints] = useState(0)
@@ -25,21 +26,29 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1><span role="img" aria-label="A fish on a hook">🎣</span> React Hooks</h1>
+			<Container>
+				<h1><span role="img" aria-label="A fish on a hook">🎣</span> React Hooks</h1>
 
-			<div>
-				<h2>Home</h2>
-				<button onClick={decreaseHomePoints}>-</button>
-				<span>{homePoints}</span>
-				<button onClick={increaseHomePoints}>+</button>
-			</div>
+				<div className="my-3">
+					<h2>Home</h2>
 
-			<div>
-				<h2>Away</h2>
-				<button onClick={decreaseAwayPoints}>-</button>
-				<span>{awayPoints}</span>
-				<button onClick={increaseAwayPoints}>+</button>
-			</div>
+					<div className="d-flex">
+						<Button variant="warning" onClick={decreaseHomePoints}>-</Button>
+						<span className="points">{homePoints}</span>
+						<Button variant="success" onClick={increaseHomePoints}>+</Button>
+					</div>
+				</div>
+
+				<div className="my-3">
+					<h2>Away</h2>
+
+					<div className="d-flex">
+						<Button onClick={decreaseAwayPoints}>-</Button>
+						<span className="points">{awayPoints}</span>
+						<Button onClick={increaseAwayPoints}>+</Button>
+					</div>
+				</div>
+			</Container>
 		</div>
 	)
 }
