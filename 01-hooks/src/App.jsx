@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container'
-import Greeter from './components/Greeter'
+import Multiplier from './components/Multiplier'
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
 			<Container>
 				<h1><span role="img" aria-label="A fish on a hook">🎣</span> React Hooks</h1>
 
-				<Greeter />
+				<Multiplier />
 			</Container>
 		</div>
 	)
