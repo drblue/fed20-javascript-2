@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { ThemeContext } from '../contexts/ThemeContextProvider'
+import React, { useEffect, useState } from 'react'
+import { useThemeContext } from '../contexts/ThemeContextProvider'
 
 const Clock = () => {
 
-	const { theme } = useContext(ThemeContext)
+	const { theme } = useThemeContext()
 
 	const [time, setTime] = useState(() => {
 		const now = new Date()
