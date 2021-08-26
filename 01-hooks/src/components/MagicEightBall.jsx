@@ -20,7 +20,7 @@ function MagicEightBall() {
 		console.log("🎱 Rolling 8-ball...")
 
 		// fetch result from API
-		fetch('https://yesnomaybe.wtf/api')
+		fetch('https://yesno.wtf/api')
 			.then(res => res.json())
 			.then(res => {
 				console.log("Ball has stopped rollin'...", res)
