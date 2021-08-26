@@ -17,7 +17,9 @@ function App() {
 						<Clock />
 					</div>
 
-					<ThemeSwitcher />
+					<div className="d-flex justify-content-center">
+						<ThemeSwitcher />
+					</div>
 				</Container>
 			</div>
 		</ThemeContextProvider>

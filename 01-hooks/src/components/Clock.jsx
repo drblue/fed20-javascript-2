@@ -27,9 +27,9 @@ const Clock = () => {
 	}, [])
 
 	return (
-		<div>
+		<div className="text-center">
 			<div>{time}</div>
-			<p className="display-6">You're using {theme} mode.</p>
+			<p className="h6">You're using {theme} mode.</p>
 		</div>
 	)
 }
