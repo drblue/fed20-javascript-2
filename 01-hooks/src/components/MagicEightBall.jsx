@@ -20,6 +20,12 @@ function MagicEightBall() {
 		console.log("🎱 Rolling 8-ball...")
 
 		// fetch result from API
+		fetch('https://yesno.wtf/api')
+			.then(res => res.json())
+			.then(res => {
+				console.log("Ball has stopped rollin'...", res)
+				setResult(res)
+			})
 	}, [question])
 
 	const handleFormSubmit = (e) => {
@@ -52,6 +58,13 @@ function MagicEightBall() {
 					Roll the <span role="img" aria-label="A black ball with the number 8">🎱</span>
 				</Button>
 			</Form>
+
+			{result && (
+				<div className="mt-5">
+					<p className="display-1"><strong>{result.answer.toUpperCase()}!</strong></p>
+					<img src={result.image} />
+				</div>
+			)}
 		</>
 	)
 }
