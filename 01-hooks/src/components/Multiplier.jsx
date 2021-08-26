@@ -1,11 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 
 const slowMultiplier = (a) => {
+	if (!a) {
+		return;
+	}
+
 	console.log("Running slow operation for:", a);
 	let j;
-	for (let i = 0; i < 800000000; i++) {
+	for (let i = 0; i < 1400000000; i++) {
 		j = i + 1;
 	}
+	console.log("Done running bogus operation");
 	return a * 2;
 }
 
@@ -26,27 +31,41 @@ const Multiplier = () => {
 		setNum(inputRef.current.value)
 	}
 
-	const multipliedNum = slowMultiplier(num)
+	useEffect(() => console.log(`Num changed to ${num}`), [num])
+
+	const multipliedNum = useMemo(() => {
+		return slowMultiplier(num)
+	}, [num])
+
+	// Would work, but would trigger two re-renders as we change a state two times
+	/*
+	useEffect(() => {
+		const multipliedNum = slowMultiplier(num)
+		setSum(multipliedNum)
+	}, [num])
+	*/
 
 	return (
-		<form onSubmit={handleFormSubmit}>
-			<div>
-				<input
-					type="number"
-					ref={inputRef}
-				/>
+		<>
+			<form onSubmit={handleFormSubmit}>
+				<div>
+					<input
+						type="number"
+						ref={inputRef}
+					/>
 
-				<button type="submit">Multiply</button>
+					<button type="submit">Multiply</button>
 
-				<p>Sum is {multipliedNum}</p>
-			</div>
+					<p>Sum is {multipliedNum}</p>
+				</div>
+
+			</form>
 
 			<div>
 				<button onClick={() => setCounter(prevCount => prevCount + 1)}>Increment counter</button>
 				<p>Counter is {counter}</p>
 			</div>
-
-		</form>
+		</>
 	)
 }
 
