@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { ThemeContext } from '../contexts/ThemeContextProvider'
 
 const Clock = () => {
+
+	const { theme } = useContext(ThemeContext)
+
 	const [time, setTime] = useState(() => {
 		const now = new Date()
 		return now.toLocaleTimeString()
@@ -24,7 +28,8 @@ const Clock = () => {
 
 	return (
 		<div>
-			{time}
+			<div>{time}</div>
+			<p className="display-6">You're using {theme} mode.</p>
 		</div>
 	)
 }
