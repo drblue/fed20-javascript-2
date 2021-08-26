@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 const Greeter = () => {
-	const [name, setName] = useState("")
+	const [name, setName] = useState(null)
 	const inputRef = useRef()
 	const prevNameRef = useRef()
 
@@ -17,8 +17,20 @@ const Greeter = () => {
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault()
-		console.log("Form has been submitted")
-		alert(`Hello ${name}`)
+		console.log("Form was submitted")
+		setName(inputRef.current.value)
+	}
+
+	const getGreeting = () => {
+		if (!name) {
+			return false
+		}
+
+		if (prevNameRef.current) {
+			return (<p>Your name is {name} and the previous human was called {prevNameRef.current}.</p>)
+		}
+
+		return (<p>Your name is {name}.</p>)
 	}
 
 	return (
@@ -26,14 +38,12 @@ const Greeter = () => {
 			<input
 				type="text"
 				ref={inputRef}
-				onChange={e => setName(e.target.value)}
-				value={name}
 				placeholder="Enter your name"
 			/>
 
 			<button type="submit">Say hi</button>
 
-			<p>Your name is {name} and it was {prevNameRef.current}.</p>
+			{getGreeting()}
 		</form>
 	)
 }
