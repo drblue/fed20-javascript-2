@@ -28,7 +28,7 @@ function MagicEightBall() {
 		setIsLoading(true)
 
 		// fetch result from API
-		fetch('https://yesno.wtf/api')
+		fetch('https://yesno.wtfff/api')
 			.then(res => res.json())
 			.then(res => {
 				console.log("Ball has stopped rollin'...", res)
@@ -65,7 +65,7 @@ function MagicEightBall() {
 	}
 
 	if (error) {
-		return (<p>ERROR! ERROR! DANGER WILL ROBINSON!</p>)
+		return (<p>{error}</p>)
 	}
 
 	return (
