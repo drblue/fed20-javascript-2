@@ -7,6 +7,7 @@ function MagicEightBall() {
 	const [formQuestion, setFormQuestion] = useState("")
 	const [question, setQuestion] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState(false)
 	const [result, setResult] = useState(null)
 	const inputRef = useRef()
 
@@ -32,12 +33,23 @@ function MagicEightBall() {
 			.then(res => {
 				console.log("Ball has stopped rollin'...", res)
 				setTimeout(() => {
+					// clear any previous error
+					setError(false)
+
 					// set response as result
 					setResult(res)
 
 					// set loading finished
 					setIsLoading(false)
 				}, 1500)
+			})
+			.catch(err => {
+				// set error
+				console.log("WE HAS ERROR 😱: ", err)
+				setError(err.message)
+
+				// set loading finished
+				setIsLoading(false)
 			})
 	}, [question])
 
@@ -50,6 +62,10 @@ function MagicEightBall() {
 
 	if (isLoading) {
 		return (<p>Loading...</p>)
+	}
+
+	if (error) {
+		return (<p>ERROR! ERROR! DANGER WILL ROBINSON!</p>)
 	}
 
 	return (
