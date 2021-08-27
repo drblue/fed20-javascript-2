@@ -19,6 +19,9 @@ function MagicEightBall() {
 		}
 		console.log("🎱 Rolling 8-ball...")
 
+		// remove previous result (if any)
+		setResult(null)
+
 		// fetch result from API
 		fetch('https://yesno.wtf/api')
 			.then(res => res.json())
