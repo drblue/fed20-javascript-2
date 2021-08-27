@@ -15,6 +15,10 @@ const useCounter = (initialValue = 0) => {
 		}
 	}
 
+	const reset = () => {
+		setCounter(initialValue)
+	}
+
 	const modifyCounter = (amount) => {
 		setCounter(prevCounter => prevCounter + amount)
 	}
@@ -22,6 +26,7 @@ const useCounter = (initialValue = 0) => {
 	return {
 		counter,
 		add,
+		reset,
 		subtract,
 	}
 }

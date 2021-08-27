@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import useCounter from '../hooks/useCounter'
 
 const PointsCounter = () => {
-	const { counter, add, subtract } = useCounter(50)
+	const { counter, add, reset, subtract } = useCounter(50)
 
 	return (
 		<div className="d-flex">
@@ -12,6 +12,8 @@ const PointsCounter = () => {
 			<span className="points">{counter}</span>
 
 			<Button variant="success" onClick={() => add()}>+</Button>
+
+			<Button variant="danger" className="ms-4" onClick={() => reset()}>🗑</Button>
 		</div>
 	)
 }
