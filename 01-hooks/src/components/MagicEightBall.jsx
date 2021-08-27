@@ -6,6 +6,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 function MagicEightBall() {
 	const [formQuestion, setFormQuestion] = useState("")
 	const [question, setQuestion] = useState("")
+	const [isLoading, setIsLoading] = useState(false)
 	const [result, setResult] = useState(null)
 	const inputRef = useRef()
 
@@ -22,13 +23,20 @@ function MagicEightBall() {
 		// remove previous result (if any)
 		setResult(null)
 
+		// set loading to true
+		setIsLoading(true)
+
 		// fetch result from API
 		fetch('https://yesno.wtf/api')
 			.then(res => res.json())
 			.then(res => {
 				console.log("Ball has stopped rollin'...", res)
 				setTimeout(() => {
+					// set response as result
 					setResult(res)
+
+					// set loading finished
+					setIsLoading(false)
 				}, 1500)
 			})
 	}, [question])
@@ -38,6 +46,10 @@ function MagicEightBall() {
 		console.log(`A question has been submitted: "Should I ${formQuestion}?"`)
 
 		setQuestion(formQuestion)
+	}
+
+	if (isLoading) {
+		return (<p>Loading...</p>)
 	}
 
 	return (
