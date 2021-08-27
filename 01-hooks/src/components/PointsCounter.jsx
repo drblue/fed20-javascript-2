@@ -1,42 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button'
+import useCounter from '../hooks/useCounter'
 
 const PointsCounter = () => {
-	const [points, setPoints] = useState(0)
-	console.log("Points:", points)
-
-	const modifyPoints = (amount) => {
-		setPoints(prevPoints => prevPoints + amount)
-	}
-
-	console.log("Rendering...")
-
-	// This will only be executed when the component is mounted,
-	// and only AFTER the component has been rendered
-	// Class Lifecycle: componentDidMount
-	useEffect(() => {
-		console.log("I'm a newly mounted component 👶🏻")
-
-		return () => {
-			// Class Lifecycle: componentWillUnmount
-			console.log("🧹 I'm being unmounted, cleaning up after myself")
-		}
-	}, [])
-
-	// This will only be executed if `points` have changed,
-	// and only AFTER the component has been rendered
-	// Class Lifecycle: componentDidUpdate
-	useEffect(() => {
-		console.log(`Points have changed to ${points}`)
-	}, [points])
+	const { counter, add, subtract } = useCounter(50)
 
 	return (
 		<div className="d-flex">
-			<Button variant="warning" onClick={() => modifyPoints(-1)}>-</Button>
+			<Button variant="warning" onClick={() => subtract()}>-</Button>
 
-			<span className="points">{points}</span>
+			<span className="points">{counter}</span>
 
-			<Button variant="success" onClick={() => modifyPoints(+1)}>+</Button>
+			<Button variant="success" onClick={() => add()}>+</Button>
 		</div>
 	)
 }
