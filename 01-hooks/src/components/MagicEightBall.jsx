@@ -2,70 +2,27 @@ import React, { useEffect, useRef, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
+import MagicEightBallResponse from './MagicEightBallResponse'
 
 function MagicEightBall() {
 	const [formQuestion, setFormQuestion] = useState("")
 	const [question, setQuestion] = useState("")
-	const [isLoading, setIsLoading] = useState(false)
-	const [error, setError] = useState(false)
-	const [result, setResult] = useState(null)
 	const inputRef = useRef()
 
 	useEffect(() => {
 		inputRef.current.focus()
 	}, [])
 
-	useEffect(() => {
-		if (question.length < 3) {
-			return;
-		}
-		console.log("🎱 Rolling 8-ball...")
-
-		// remove previous result (if any)
-		setResult(null)
-
-		// set loading to true
-		setIsLoading(true)
-
-		// fetch result from API
-		fetch('https://yesno.wtfff/api')
-			.then(res => res.json())
-			.then(res => {
-				console.log("Ball has stopped rollin'...", res)
-				setTimeout(() => {
-					// clear any previous error
-					setError(false)
-
-					// set response as result
-					setResult(res)
-
-					// set loading finished
-					setIsLoading(false)
-				}, 1500)
-			})
-			.catch(err => {
-				// set error
-				console.log("WE HAS ERROR 😱: ", err)
-				setError(err.message)
-
-				// set loading finished
-				setIsLoading(false)
-			})
-	}, [question])
-
 	const handleFormSubmit = (e) => {
 		e.preventDefault()
+
+		if (formQuestion.length < 3) {
+			console.log(`The question submitted is too short`)
+			return;
+		}
+
 		console.log(`A question has been submitted: "Should I ${formQuestion}?"`)
-
 		setQuestion(formQuestion)
-	}
-
-	if (isLoading) {
-		return (<p>Loading...</p>)
-	}
-
-	if (error) {
-		return (<p>{error}</p>)
 	}
 
 	return (
@@ -92,12 +49,9 @@ function MagicEightBall() {
 				</Button>
 			</Form>
 
-			{result && (
-				<div className="mt-5">
-					<p className="display-1"><strong>{result.answer.toUpperCase()}!</strong></p>
-					<img src={result.image} />
-				</div>
-			)}
+			<div className="magic-eight-ball-response mt-5">
+				{question && (<MagicEightBallResponse question={question} />)}
+			</div>
 		</>
 	)
 }
