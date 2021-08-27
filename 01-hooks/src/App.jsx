@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import MagicEightBall from './components/MagicEightBall'
+import Posts from './components/Posts'
 import ThemeContextProvider from './contexts/ThemeContextProvider'
 
 function App() {
@@ -12,6 +13,10 @@ function App() {
 
 					<div className="text-center">
 						<MagicEightBall />
+					</div>
+
+					<div>
+						<Posts />
 					</div>
 				</Container>
 			</div>
