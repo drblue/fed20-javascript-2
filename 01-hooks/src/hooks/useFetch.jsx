@@ -6,7 +6,7 @@ const useFetch = (initialUrl = null) => {
 	const [isLoading, setIsLoading] = useState(false)
 	const [url, setUrl] = useState(initialUrl)
 
-	useEffect(() => {
+	const runQuery = () => {
 		if (!url) {
 			return;
 		}
@@ -39,12 +39,17 @@ const useFetch = (initialUrl = null) => {
 				// set loading finished
 				setIsLoading(false)
 			})
+	}
+
+	useEffect(() => {
+		runQuery()
 	}, [url])
 
 	return {
 		data,
 		error,
 		isLoading,
+		runQuery,
 		url,
 		setUrl,
 	}
