@@ -6,7 +6,14 @@ import App from './App'
 import ThemeContextProvider from './contexts/ThemeContextProvider'
 import './App.scss'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+			staleTime: 1000 * 10, // 10 seconds
+		},
+	},
+})
 
 ReactDOM.render(
 	<React.StrictMode>
