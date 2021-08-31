@@ -14,7 +14,7 @@ const RandomDadJokePage = () => {
 
 			{isError && (<p>An error occurred: {error}</p>)}
 
-			{data && (<div className="display-4 text-center">{data.joke}</div>)}
+			{data && (<div className="h3 text-center my-5">{data.joke}</div>)}
 		</Container>
 	)
 }
