@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
+import useLocalStorage from '../hooks/useLocalStorage'
 import MagicEightBallResponse from './MagicEightBallResponse'
 
 function MagicEightBall() {
+	const [savedQuestion, setSavedQuestion] = useLocalStorage('magic8ball_question', '')
 	const [formQuestion, setFormQuestion] = useState("")
 	const [question, setQuestion] = useState("")
 	const inputRef = useRef()
@@ -12,6 +14,11 @@ function MagicEightBall() {
 	useEffect(() => {
 		inputRef.current.focus()
 	}, [])
+
+	// set form question to whatever is stored in localStorage
+	useEffect(() => {
+		setFormQuestion(savedQuestion)
+	}, [savedQuestion])
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault()
@@ -23,6 +30,7 @@ function MagicEightBall() {
 
 		console.log(`A question has been submitted: "Should I ${formQuestion}?"`)
 		setQuestion(formQuestion)
+		setSavedQuestion(formQuestion)
 	}
 
 	return (
