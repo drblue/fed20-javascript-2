@@ -20,6 +20,10 @@ const Navigation = () => {
 								<span role="img" aria-label="a laughing face with tears">😂</span> Random Dad Joke
 							</NavLink>
 
+							<NavLink to="/random-doggo" className="nav-link">
+								<span role="img" aria-label="a dog">🐶</span> Random doggo
+							</NavLink>
+
 						</Nav>
 					</Navbar.Collapse>
 			</Container>
