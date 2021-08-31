@@ -13,21 +13,11 @@ function App() {
 				<Container>
 					<h1><span role="img" aria-label="A fish on a hook">🎣</span> React Hooks</h1>
 
-					<div className="my-3">
-						<h2>Points Counter</h2>
-						<PointsCounter />
-					</div>
-
-					<div className="my-3">
-						<h2>Five Counts Counter</h2>
-						<FiveCountsCounter />
-					</div>
-
-					<hr className="my-5" />
-
 					<div className="text-center">
 						<MagicEightBall />
 					</div>
+
+					<hr className="my-5" />
 
 					<div>
 						<Posts />
