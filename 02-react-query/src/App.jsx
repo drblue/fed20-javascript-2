@@ -1,14 +1,23 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
+import { Route, Switch } from 'react-router-dom'
 import Navigation from './pages/partials/Navigation'
+import HomePage from './pages/HomePage'
+import PageNotFound from './pages/PageNotFound'
 
 function App() {
 	return (
 		<>
 			<Navigation />
 
-			<Container className="py-3">
-			</Container>
+			<Switch>
+				<Route exact path="/">
+					<HomePage />
+				</Route>
+
+				<Route>
+					<PageNotFound />
+				</Route>
+			</Switch>
 		</>
 	)
 }
