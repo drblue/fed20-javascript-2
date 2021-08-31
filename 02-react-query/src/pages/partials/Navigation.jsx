@@ -16,12 +16,8 @@ const Navigation = () => {
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="ms-auto">
 
-							<NavLink to="/link" className="nav-link">
-								Link
-							</NavLink>
-
-							<NavLink to="/another-link" className="nav-link">
-								Another Link
+							<NavLink to="/random-dad-joke" className="nav-link">
+								<span role="img" aria-label="a laughing face with tears">😂</span> Random Dad Joke
 							</NavLink>
 
 						</Nav>

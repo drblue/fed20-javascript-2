@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import Navigation from './pages/partials/Navigation'
 import HomePage from './pages/HomePage'
 import PageNotFound from './pages/PageNotFound'
+import RandomDadJokePage from './pages/RandomDadJokePage'
 
 function App() {
 	return (
@@ -12,6 +13,10 @@ function App() {
 			<Switch>
 				<Route exact path="/">
 					<HomePage />
+				</Route>
+
+				<Route path="/random-dad-joke">
+					<RandomDadJokePage />
 				</Route>
 
 				<Route>
