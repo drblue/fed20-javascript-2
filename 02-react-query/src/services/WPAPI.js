@@ -6,6 +6,7 @@
  */
 
 import axios from 'axios'
+import li from 'li'
 
 axios.defaults.baseURL = 'https://fed20.thehiveresistance.com/wp-json'
 
@@ -13,8 +14,7 @@ const get = async (endpoint) => {
 	const response = await axios.get(endpoint)
 
 	// parse link header for pagination
-	const prev = null
-	const next = "https://fed20.thehiveresistance.com/wp-json/wp/v2/posts?page=2"
+	const link = li.parse(response.headers['link'])
 
 	// get total num of items
 	const count = parseInt(response.headers['x-wp-total'])
@@ -24,9 +24,8 @@ const get = async (endpoint) => {
 
 	// transform data into something nicer
 	return {
+		...link,
 		count,
-		prev,
-		next,
 		pages,
 		results: response.data
 	}
