@@ -3,14 +3,23 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import { useQuery, useQueryClient } from 'react-query'
 import { useParams } from 'react-router-dom'
+import Joke from '../components/Joke'
+import { getRandomJoke } from '../services/OfficialJokeAPI'
 
 const RandomJokePage = () => {
 	const { type } = useParams()
-	const { data, error, isError, isFetching, isLoading } = useQuery('', () => {})
+	const { data, error, isError, isFetching, isLoading } = useQuery(['random-joke', type],
+		() => getRandomJoke(type),
+		{
+			staleTime: 1000 * 60 * 5, // 5 mins
+			cacheTime: 1000 * 60 * 30, // 30 mins
+		}
+	)
 
 	const queryClient = useQueryClient()
 
 	const getAnotherJoke = () => {
+		queryClient.invalidateQueries(['random-joke', type])
 	}
 
 	return (
