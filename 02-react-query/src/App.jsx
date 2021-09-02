@@ -6,33 +6,38 @@ import PageNotFound from './pages/PageNotFound'
 import RandomDadJokePage from './pages/RandomDadJokePage'
 import RandomDogPage from './pages/RandomDogPage'
 import RandomJokePage from './pages/RandomJokePage'
+import GlobalFetchingSpinner from './components/GlobalFetchingSpinner'
 
 function App() {
 	return (
 		<>
 			<Navigation />
 
-			<Switch>
-				<Route exact path="/">
-					<HomePage />
-				</Route>
+			<div id="App">
+				<GlobalFetchingSpinner />
 
-				<Route path="/random-dad-joke">
-					<RandomDadJokePage />
-				</Route>
+				<Switch>
+					<Route exact path="/">
+						<HomePage />
+					</Route>
 
-				<Route path="/random-doggo">
-					<RandomDogPage />
-				</Route>
+					<Route path="/random-dad-joke">
+						<RandomDadJokePage />
+					</Route>
 
-				<Route path="/random-joke/:type?">
-					<RandomJokePage />
-				</Route>
+					<Route path="/random-doggo">
+						<RandomDogPage />
+					</Route>
 
-				<Route>
-					<PageNotFound />
-				</Route>
-			</Switch>
+					<Route path="/random-joke/:type?">
+						<RandomJokePage />
+					</Route>
+
+					<Route>
+						<PageNotFound />
+					</Route>
+				</Switch>
+			</div>
 		</>
 	)
 }
