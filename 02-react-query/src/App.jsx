@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import PageNotFound from './pages/PageNotFound'
 import RandomDadJokePage from './pages/RandomDadJokePage'
 import RandomDogPage from './pages/RandomDogPage'
+import RandomJokePage from './pages/RandomJokePage'
 
 function App() {
 	return (
@@ -22,6 +23,10 @@ function App() {
 
 				<Route path="/random-doggo">
 					<RandomDogPage />
+				</Route>
+
+				<Route path="/random-joke/:type?">
+					<RandomJokePage />
 				</Route>
 
 				<Route>
