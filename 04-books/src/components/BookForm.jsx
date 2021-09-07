@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 
 const BookForm = ({
 	onFormSubmit,
+	isLoading,
 	defaultValues
 }) => {
 
@@ -35,7 +36,9 @@ const BookForm = ({
 				<Form.Control type="number" {...register('pages')} min="0" placeholder="Enter the number of pages in the book" />
 			</Form.Group>
 
-			<Button variant="success" type="submit">Submit</Button>
+			<Button variant="success" type="submit" disabled={isLoading}>
+				{isLoading ? 'Submitting...' : 'Submit'}
+			</Button>
 		</Form>
 	)
 }
