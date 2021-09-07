@@ -6,22 +6,32 @@
 import axios from 'axios'
 import li from 'li'
 
-axios.defaults.baseURL = ''
+axios.defaults.baseURL = 'http://localhost:4000'
 
 const get = async (endpoint) => {
 	const response = await axios.get(endpoint)
 
-	// parse link header for pagination
-	const link = li.parse(response.headers['link'])
+	// return content
+	return response.data
+}
 
-	// transform data into something nicer
-	return {
-		...link,
-		count,
-		pages,
-		results: response.data
-	}
+/**
+ * Get all books
+ * @returns Promise
+ */
+const getBooks = async () => {
+	return await get(`/books`)
+}
+
+/**
+ * Get a single book
+ * @returns Promise
+ */
+const getBook = async (id) => {
+	return await get(`/books/${id}`)
 }
 
 export default {
+	getBooks,
+	getBook,
 }
