@@ -48,6 +48,20 @@
       "pages": 9,
       "published": 1977,
       "author": "Tony Stark"
+    },
+    {
+      "title": "Components are my only friends",
+      "author": "Re Acting",
+      "published": "2021",
+      "pages": "42",
+      "id": 8
+    },
+    {
+      "title": "My pants - A love story",
+      "author": "Mr Fancy Pants",
+      "published": "1789",
+      "pages": "420",
+      "id": 9
     }
   ]
 }
