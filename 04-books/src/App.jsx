@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import GlobalFetchingSpinner from './components/GlobalFetchingSpinner'
 import BookPage from './pages/BookPage'
 import BooksPage from './pages/BooksPage'
+import CreateBookPage from './pages/CreateBookPage'
 import HomePage from './pages/HomePage'
 import Navigation from './pages/partials/Navigation'
 import PageNotFound from './pages/PageNotFound'
@@ -18,6 +19,10 @@ function App() {
 				<Switch>
 					<Route exact path="/">
 						<HomePage />
+					</Route>
+
+					<Route path="/books/create">
+						<CreateBookPage />
 					</Route>
 
 					<Route path="/books/:id">
