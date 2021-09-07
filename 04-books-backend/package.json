@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "A dummy REST API server using json-server",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server --watch db/db.json --port 4000"
+  },
+  "author": "Johan Nordström",
+  "license": "WTFPL",
+  "dependencies": {
+    "json-server": "^0.16.3"
+  }
+}

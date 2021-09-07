@@ -1,0 +1,53 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "pages": 224,
+      "published": 1979,
+      "author": "Douglas Adams"
+    },
+    {
+      "id": 2,
+      "title": "2001: A Space Odyssey",
+      "pages": 221,
+      "published": 1968,
+      "author": "Sir Arthur C. Clarke"
+    },
+    {
+      "id": 3,
+      "title": "2010: Odyssey Two",
+      "pages": 291,
+      "published": 1982,
+      "author": "Sir Arthur C. Clarke"
+    },
+    {
+      "id": 4,
+      "title": "Foundation",
+      "pages": 255,
+      "published": 1951,
+      "author": "Isaac Asimow"
+    },
+    {
+      "id": 5,
+      "title": "Neuromancer",
+      "pages": 271,
+      "published": 1984,
+      "author": "William Gibson"
+    },
+    {
+      "id": 6,
+      "title": "Bananana",
+      "pages": 3,
+      "published": 2019,
+      "author": "Sean Banan"
+    },
+    {
+      "id": 7,
+      "title": "An Iron Heart",
+      "pages": 9,
+      "published": 1977,
+      "author": "Tony Stark"
+    }
+  ]
+}
