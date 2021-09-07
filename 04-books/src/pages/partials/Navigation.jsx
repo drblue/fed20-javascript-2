@@ -10,16 +10,16 @@ const Navigation = () => {
 		<Navbar bg="dark" variant="dark" expand="md">
 			<Container>
 				<Link to="/" className="navbar-brand">
-					<span role="img" aria-label="A pile of books">📚</span> Books
+					<span role="img" aria-label="A library card">💳</span> Library
 				</Link>
 
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="ms-auto">
 
-							{/* <NavLink to="/posts" className="nav-link">
-								<span role="img" aria-label="a postal horn">📯</span> Posts
-							</NavLink> */}
+							<NavLink to="/books" className="nav-link">
+								<span role="img" aria-label="a pile of books">📚</span> Books
+							</NavLink>
 
 						</Nav>
 					</Navbar.Collapse>

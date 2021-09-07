@@ -19,7 +19,7 @@ const get = async (endpoint) => {
  * Get all books
  * @returns Promise
  */
-const getBooks = async () => {
+export const getBooks = async () => {
 	return await get(`/books`)
 }
 
@@ -27,7 +27,7 @@ const getBooks = async () => {
  * Get a single book
  * @returns Promise
  */
-const getBook = async (id) => {
+export const getBook = async (id) => {
 	return await get(`/books/${id}`)
 }
 
