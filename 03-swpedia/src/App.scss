@@ -1,0 +1,11 @@
+@import "bootstrap/scss/bootstrap";
+
+#App {
+	position: relative;
+}
+
+.fetching-spinner {
+	position: absolute;
+	right: 80px;
+	top: 40px;
+}
