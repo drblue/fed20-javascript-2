@@ -14,9 +14,15 @@ const BooksPage = () => {
 	const [page, setPage] = useState(searchParams.page)
 	const [searchQuery, setSearchQuery] = useState('')
 
-	const { data, error, isError, isLoading, isPreviousData } = useQuery(['books', searchParams], () => {
-		return getBooks(searchParams)
-	})
+	const { data, error, isError, isLoading, isPreviousData } = useQuery(
+		['books', searchParams],
+		() => {
+			return getBooks(searchParams)
+		},
+		{
+			keepPreviousData: true,
+		}
+	)
 
 	const handleSearchFormSubmit = (data) => {
 		console.log("Got search query", data)
