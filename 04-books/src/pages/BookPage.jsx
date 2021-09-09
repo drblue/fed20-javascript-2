@@ -3,17 +3,31 @@ import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Table from 'react-bootstrap/Table'
-import { useHistory, useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
-import { getBook } from '../services/API'
+import { Link, useHistory, useParams } from 'react-router-dom'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { deleteBook, getBook } from '../services/API'
 
 const BookPage = () => {
 	const history = useHistory()
 	const { id } = useParams()
-
+	const queryClient = useQueryClient()
+	const { mutateAsync, isLoading: isMutating } = useMutation(deleteBook)
 	const { data, error, isError, isLoading } = useQuery(['book', id], () => {
 		return getBook(id)
 	})
+
+	const handleBtnDeleteClick = async () => {
+		// u sure?
+		if (confirm('You sure bro?')) {
+			// trigger delete mutation
+			console.log("Triggering delete mutation")
+
+			await mutateAsync(id)
+			queryClient.refetchQueries(['books'])
+
+			history.replace(`/books`)
+		}
+	}
 
 	return (
 		<Container className="py-3">
@@ -28,6 +42,11 @@ const BookPage = () => {
 					<strong>Error:</strong> {error.message}
 				</Alert>
 			)}
+
+			<div className="d-flex justify-content-end mb-2">
+				<Link to={`/books/${id}/edit`} className="btn btn-warning btn-sm">Edit</Link>
+				<Button variant="danger" size="sm" onClick={handleBtnDeleteClick}>Delete</Button>
+			</div>
 
 			{data && (
 				<Table bordered>

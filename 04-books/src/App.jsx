@@ -7,6 +7,7 @@ import CreateBookPage from './pages/CreateBookPage'
 import HomePage from './pages/HomePage'
 import Navigation from './pages/partials/Navigation'
 import PageNotFound from './pages/PageNotFound'
+import UpdateBookPage from './pages/UpdateBookPage'
 
 function App() {
 	return (
@@ -23,6 +24,10 @@ function App() {
 
 					<Route path="/books/create">
 						<CreateBookPage />
+					</Route>
+
+					<Route path="/books/:id/edit">
+						<UpdateBookPage />
 					</Route>
 
 					<Route path="/books/:id">
