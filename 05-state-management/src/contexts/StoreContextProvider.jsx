@@ -3,21 +3,30 @@ import reducer from '../reducers/countReducer'
 
 const initialState = {
 	count: 0,
+	todos: [],
+	user: false,
 }
 
-const StoreContext = createContext()
+const DispatchContext = createContext()
+const StateContext = createContext()
 
-export const useStoreContext = () => {
-	return useContext(StoreContext)
+export const useDispatchContext = () => {
+	return useContext(DispatchContext)
+}
+
+export const useStateContext = () => {
+	return useContext(StateContext)
 }
 
 const StoreContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
 
 	return (
-		<StoreContext.Provider value={{ state, dispatch }}>
-			{children}
-		</StoreContext.Provider>
+		<DispatchContext.Provider value={dispatch}>
+			<StateContext.Provider value={state}>
+				{children}
+			</StateContext.Provider>
+		</DispatchContext.Provider>
 	)
 }
 

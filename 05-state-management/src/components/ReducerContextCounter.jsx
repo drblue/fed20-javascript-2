@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button'
-import { useStoreContext } from '../contexts/StoreContextProvider'
+import { useDispatchContext, useStateContext } from '../contexts/StoreContextProvider'
 import ACTIONS from '../actions/countActions'
 
 const ReducerContextCounter = () => {
-	const { state, dispatch } = useStoreContext()
+	const dispatch = useDispatchContext()
+	const state = useStateContext()
 
 	return (
 		<div className="reducer-counter">
