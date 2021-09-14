@@ -7,12 +7,12 @@ const accountReducer = (state = initialState, action) => {
 		case 'deposit':
 			return {
 				...state,
-				balance: state.balance + 1000,
+				balance: state.balance + action.payload.amount,
 			}
 		case 'withdraw':
 			return {
 				...state,
-				balance: state.balance - 1000,
+				balance: state.balance - action.payload.amount,
 			}
 		default:
 			return state
