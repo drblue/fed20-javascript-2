@@ -9,10 +9,10 @@ const AccountPage = () => {
 
 			<div className="text-center my-5">
 				<p className="h3">Balance</p>
-				<code className="display-4">${}</code>
+				<code className="display-4">$ 0</code>
 			</div>
 
-			<div className="d-flex justify-content-between">
+			<div className="d-flex justify-content-around">
 				<div className="text-center">
 					<p>AccountButtons 1</p>
 					<AccountButtons />
