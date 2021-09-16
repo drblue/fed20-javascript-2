@@ -20,7 +20,7 @@ export const accountSlice = createSlice({
 })
 
 // Action creators are generated for each reducer function
-export const { profit, withdraw } = accountSlice.actions
+export const { deposit, withdraw } = accountSlice.actions
 
 // Export the reducer
 export default accountSlice.reducer
