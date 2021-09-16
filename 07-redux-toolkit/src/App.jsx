@@ -4,6 +4,7 @@ import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
 import Navigation from './pages/partials/Navigation'
 import PageNotFound from './pages/PageNotFound'
+import TodosPage from './pages/TodosPage'
 
 function App() {
 	return (
@@ -18,6 +19,10 @@ function App() {
 
 					<Route path="/account">
 						<AccountPage />
+					</Route>
+
+					<Route path="/todos">
+						<TodosPage />
 					</Route>
 
 					<Route>

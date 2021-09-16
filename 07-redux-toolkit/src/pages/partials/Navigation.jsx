@@ -17,6 +17,7 @@ const Navigation = () => {
 					<Nav className="ms-auto">
 
 						<NavLink to="/account" className="nav-link">Account</NavLink>
+						<NavLink to="/todos" className="nav-link">Todos</NavLink>
 
 					</Nav>
 				</Navbar.Collapse>
