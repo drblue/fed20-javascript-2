@@ -1,30 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Container, ListGroup } from 'react-bootstrap'
-
-const todos = [
-	{
-		id: '14c9b3244b4a',
-		title: 'Learn React 😊',
-		completed: true,
-	},
-	{
-		id: '5e584050fc4f',
-		title: 'Learn Firebase 🔥',
-		completed: false,
-	},
-	{
-		id: 'd3329c34dc67',
-		title: 'Profit 💰',
-		completed: false,
-	},
-	{
-		id: '44fd9cc7e1a4',
-		title: 'Take over the world 😈',
-		completed: false,
-	}
-]
+import { db } from '../firebase'
+import { collection, getDocs } from 'firebase/firestore'
 
 const TodosPage = () => {
+	const [todos, setTodos] = useState()
+	const [loading, setLoading] = useState(true)
+
+	useEffect(async () => {
+		// get reference to collection 'todos'
+		const ref = collection(db, 'todos')
+		const snapshot = await getDocs(ref)
+
+		// console.log("got that snapshot 📸", snapshot)
+		const data = snapshot.docs.map(doc => {
+			return {
+				id: doc.id,
+				...doc.data() // title, completed
+			}
+		})
+
+		console.log(data)
+		setTodos(data)
+		setLoading(false)
+	}, [])
+
 	return (
 		<Container className="py-3">
 
@@ -33,13 +33,21 @@ const TodosPage = () => {
 				<Button onClick={() => {}}>Refresh</Button>
 			</div>
 
-			<ListGroup>
-				{todos.map((todo, index) => (
-					<ListGroup.Item action href={`/todos/${todo.id}`} key={index}>
-						{todo.title}
-					</ListGroup.Item>
-				))}
-			</ListGroup>
+			{loading && <p>Loading...</p>}
+
+			{todos && <>
+				{todos.length
+					?
+						<ListGroup>
+							{todos.map((todo, index) => (
+								<ListGroup.Item action href={`/todos/${todo.id}`} key={index}>
+									{todo.title}
+								</ListGroup.Item>
+							))}
+						</ListGroup>
+					: <p>Yay, you have NO todos 🥳!</p>
+				}
+			</>}
 
 		</Container>
 	)
