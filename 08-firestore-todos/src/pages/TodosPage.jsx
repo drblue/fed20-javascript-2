@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Container, ListGroup } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { db } from '../firebase'
 import { collection, getDocs } from 'firebase/firestore'
 
@@ -40,7 +41,7 @@ const TodosPage = () => {
 					?
 						<ListGroup>
 							{todos.map((todo, index) => (
-								<ListGroup.Item action href={`/todos/${todo.id}`} key={index}>
+								<ListGroup.Item as={Link} action to={`/todos/${todo.id}`} key={index}>
 									{todo.title}
 								</ListGroup.Item>
 							))}
