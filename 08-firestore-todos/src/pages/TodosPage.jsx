@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Container, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import CreateNewTodoForm from '../components/CreateNewTodoForm'
 import useGetTodos from '../hooks/useGetTodos'
 
 const TodosPage = () => {
@@ -29,6 +30,11 @@ const TodosPage = () => {
 					: <p>Yay, you have NO todos 🥳!</p>
 				}
 			</>}
+
+			<hr className="my-4" />
+
+			<h2>Got moar to do? 😭</h2>
+			<CreateNewTodoForm />
 
 		</Container>
 	)
