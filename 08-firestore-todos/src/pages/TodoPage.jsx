@@ -16,7 +16,7 @@ const TodoPage = () => {
 				<div className="d-flex justify-content-between align-items-center mb-3">
 					<h1>{todo.title}</h1>
 
-					<Button onClick={() => {}}>Refresh</Button>
+					<Button onClick={() => { getData() }}>Refresh</Button>
 				</div>
 
 				<p className="display-1">

@@ -6,7 +6,7 @@ const useGetDocument = (col, id) => {
 	const [loading, setLoading] = useState(true)
 	const [data, setData] = useState()
 
-	useEffect(async () => {
+	const getData = async () => {
 		setLoading(true)
 
 		// get document reference
@@ -21,9 +21,14 @@ const useGetDocument = (col, id) => {
 
 		setData(snapshot.data())
 		setLoading(false)
+	}
+
+	useEffect(() => {
+		getData()
 	}, [id])
 
 	return {
+		getData,
 		loading,
 		data,
 	}

@@ -6,7 +6,7 @@ const useGetCollection = (col) => {
 	const [data, setData] = useState()
 	const [loading, setLoading] = useState(true)
 
-	useEffect(async () => {
+	const getData = async () => {
 		// get reference to collection
 		const ref = collection(db, col)
 		const snapshot = await getDocs(ref)
@@ -20,9 +20,14 @@ const useGetCollection = (col) => {
 
 		setData(data)
 		setLoading(false)
+	}
+
+	useEffect(() => {
+		getData()
 	}, [])
 
 	return {
+		getData,
 		loading,
 		data,
 	}
