@@ -5,7 +5,7 @@ import useGetTodo from '../hooks/useGetTodo'
 
 const TodoPage = () => {
 	const { id } = useParams()
-	const { getTodo, loading, todo } = useGetTodo(id)
+	const { getData, loading, data: todo } = useGetTodo(id)
 
 	return (
 		<Container className="py-3">
