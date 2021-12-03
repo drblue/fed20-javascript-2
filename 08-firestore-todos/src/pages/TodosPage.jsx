@@ -1,30 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Button, Container, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { db } from '../firebase'
-import { collection, getDocs } from 'firebase/firestore'
+import useGetTodos from '../hooks/useGetTodos'
 
 const TodosPage = () => {
-	const [todos, setTodos] = useState()
-	const [loading, setLoading] = useState(true)
-
-	useEffect(async () => {
-		// get reference to collection 'todos'
-		const ref = collection(db, 'todos')
-		const snapshot = await getDocs(ref)
-
-		// console.log("got that snapshot 📸", snapshot)
-		const data = snapshot.docs.map(doc => {
-			return {
-				id: doc.id,
-				...doc.data() // title, completed
-			}
-		})
-
-		console.log(data)
-		setTodos(data)
-		setLoading(false)
-	}, [])
+	const { loading, todos } = useGetTodos()
 
 	return (
 		<Container className="py-3">
