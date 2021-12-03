@@ -8,7 +8,7 @@ import { doc, deleteDoc, updateDoc } from 'firebase/firestore'
 const TodoPage = () => {
 	const { id } = useParams()
 	const navigate = useNavigate()
-	const { getData, loading, data: todo } = useGetTodo(id)
+	const { loading, data: todo } = useGetTodo(id)
 
 	const deleteTodo = async () => {
 		const ref = doc(db, 'todos', id)
@@ -23,8 +23,6 @@ const TodoPage = () => {
 		await updateDoc(ref, {
 			completed: !todo.completed,
 		})
-
-		getData()
 	}
 
 	return (
@@ -35,8 +33,6 @@ const TodoPage = () => {
 			{todo && <>
 				<div className="d-flex justify-content-between align-items-center mb-3">
 					<h1>{todo.title}</h1>
-
-					<Button onClick={getData}>Refresh</Button>
 				</div>
 
 				<p className="display-1">
