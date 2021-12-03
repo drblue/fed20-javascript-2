@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import useGetTodos from '../hooks/useGetTodos'
 
 const TodosPage = () => {
-	const { loading, todos } = useGetTodos()
+	const { data, loading } = useGetTodos()
 
 	return (
 		<Container className="py-3">
@@ -16,11 +16,11 @@ const TodosPage = () => {
 
 			{loading && <p>Loading...</p>}
 
-			{todos && <>
-				{todos.length
+			{data && <>
+				{data.length
 					?
 						<ListGroup>
-							{todos.map((todo, index) => (
+							{data.map((todo, index) => (
 								<ListGroup.Item as={Link} action to={`/todos/${todo.id}`} key={index}>
 									{todo.title}
 								</ListGroup.Item>
