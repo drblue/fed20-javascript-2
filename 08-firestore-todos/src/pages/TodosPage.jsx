@@ -15,7 +15,9 @@ const TodosPage = () => {
 		collection(db, 'todos'),
 		orderBy('timestamp')
 	)
-	const { data, isLoading } = useFirestoreQueryData(['todos'], queryRef)
+	const { data, isLoading } = useFirestoreQueryData(['todos'], queryRef, {
+		subscribe: true,
+	})
 
 	return (
 		<Container className="py-3">

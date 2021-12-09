@@ -22,8 +22,6 @@ const CreateNewTodoForm = () => {
 		})
 
 		inputTitle.current.value = ''
-
-		alert('PARTY ON WAYNE!')
 	}
 
 	return (
