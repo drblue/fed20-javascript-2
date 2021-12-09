@@ -3,9 +3,11 @@ import { Button, Container, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import CreateNewTodoForm from '../components/CreateNewTodoForm'
 import useGetTodos from '../hooks/useGetTodos'
+import { firebaseTimestampToString } from '../helpers/time'
 
 const TodosPage = () => {
 	const { data, loading } = useGetTodos()
+	console.log(data)
 
 	return (
 		<Container className="py-3">
@@ -20,11 +22,19 @@ const TodosPage = () => {
 				{data.length
 					?
 						<ListGroup>
-							{data.map((todo, index) => (
-								<ListGroup.Item as={Link} action to={`/todos/${todo.id}`} key={index}>
-									{todo.title}
-								</ListGroup.Item>
-							))}
+							{data.map((todo, index) => {
+								const timestamp = firebaseTimestampToString(todo.timestamp)
+								const statusClass = todo.completed ? 'completed' : 'not-completed'
+
+								return (
+									<ListGroup.Item as={Link} action to={`/todos/${todo.id}`} className={`${statusClass} d-flex justify-content-between align-items-center`} key={index}>
+										<span>{todo.title}</span>
+										<div className="timestamp">
+											{timestamp ?? '-'}
+										</div>
+									</ListGroup.Item>
+								)
+							})}
 						</ListGroup>
 					: <p>Yay, you have NO todos 🥳!</p>
 				}
