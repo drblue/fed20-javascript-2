@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import HomePage from './pages/HomePage'
 import Navigation from './pages/partials/Navigation'
 import PageNotFound from './pages/PageNotFound'
@@ -19,6 +20,7 @@ function App() {
 					<Route element={<PageNotFound />} />
 				</Routes>
 			</div>
+			<ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
 		</>
 	)
 }

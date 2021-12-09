@@ -1,13 +1,21 @@
 import React from 'react'
+import { collection, orderBy, query } from 'firebase/firestore'
 import { Button, Container, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useFirestoreQueryData } from '@react-query-firebase/firestore'
 import CreateNewTodoForm from '../components/CreateNewTodoForm'
 import useGetTodos from '../hooks/useGetTodos'
 import { firebaseTimestampToString } from '../helpers/time'
+import { db } from '../firebase'
 
 const TodosPage = () => {
-	const { data, loading } = useGetTodos()
-	console.log(data)
+	// const { data, loading } = useGetTodos()
+
+	const queryRef = query(
+		collection(db, 'todos'),
+		orderBy('timestamp')
+	)
+	const { data, isLoading } = useFirestoreQueryData(['todos'], queryRef)
 
 	return (
 		<Container className="py-3">
@@ -16,7 +24,7 @@ const TodosPage = () => {
 				<h1>Todos</h1>
 			</div>
 
-			{loading && <p>Loading...</p>}
+			{isLoading && <p>Loading...</p>}
 
 			{data && <>
 				{data.length
