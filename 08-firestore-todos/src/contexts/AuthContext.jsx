@@ -10,8 +10,13 @@ const useAuthContext = () => {
 
 const AuthContextProvider = ({ children }) => {
 
+	const signup = (email, password) => {
+		return createUserWithEmailAndPassword(auth, email, password)
+	}
+
 	const contextValues = {
 		// here be everything the children needs/should be able to use
+		signup,
 	}
 
 	return (
