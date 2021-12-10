@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import {
 	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword
+	signInWithEmailAndPassword,
+	signOut,
 } from 'firebase/auth'
 import { auth } from '../firebase'
 
@@ -24,6 +25,7 @@ const AuthContextProvider = ({ children }) => {
 	}
 
 	const logout = () => {
+		return signOut(auth)
 	}
 
 	// add auth-state-observer here (somehow... 😈)
