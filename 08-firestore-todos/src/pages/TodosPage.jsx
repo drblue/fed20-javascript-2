@@ -16,6 +16,7 @@ const TodosPage = () => {
 		orderBy('timestamp')
 	)
 	const { data, isLoading } = useFirestoreQueryData(['todos'], queryRef, {
+		idField: 'id',
 		subscribe: true,
 	})
 
