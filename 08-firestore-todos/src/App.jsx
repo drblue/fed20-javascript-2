@@ -11,6 +11,7 @@ import PageNotFound from './pages/PageNotFound'
 import SignupPage from './pages/SignupPage'
 import TodoPage from './pages/TodoPage'
 import TodosPage from './pages/TodosPage'
+import UpdateProfilePage from './pages/UpdateProfilePage'
 
 function App() {
 	return (
@@ -43,7 +44,13 @@ function App() {
 						</RequireAuth>
 					} />
 
-					<Route element={<PageNotFound />} />
+					<Route path="/update-profile" element={
+						<RequireAuth redirectTo="/login">
+							<UpdateProfilePage />
+						</RequireAuth>
+					} />
+
+					<Route path="*" element={<PageNotFound />} />
 				</Routes>
 			</Container>
 
