@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { Container } from 'react-bootstrap'
+import RequireAuth from './components/RequireAuth'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import LogoutPage from './pages/LogoutPage'
@@ -18,12 +19,30 @@ function App() {
 
 			<Container id="App" className="py-3">
 				<Routes>
-					<Route path="/" element={<HomePage />} />
+					{/* Guest routes */}
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/logout" element={<LogoutPage />} />
 					<Route path="/signup" element={<SignupPage />} />
-					<Route path="/todos" element={<TodosPage />} />
-					<Route path="/todos/:id" element={<TodoPage />} />
+
+					{/* Protected routes */}
+					<Route path="/" element={
+						<RequireAuth redirectTo="/login">
+							<HomePage />
+						</RequireAuth>
+					} />
+
+					<Route path="/todos" element={
+						<RequireAuth redirectTo="/login">
+							<TodosPage />
+						</RequireAuth>
+					} />
+
+					<Route path="/todos/:id" element={
+						<RequireAuth redirectTo="/login">
+							<TodoPage />
+						</RequireAuth>
+					} />
+
 					<Route element={<PageNotFound />} />
 				</Routes>
 			</Container>
