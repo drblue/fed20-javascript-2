@@ -5,6 +5,7 @@ import {
 	signInWithEmailAndPassword,
 	signOut,
 } from 'firebase/auth'
+import { PacmanLoader } from 'react-spinners'
 import { auth } from '../firebase'
 
 const AuthContext = createContext()
@@ -34,6 +35,7 @@ const AuthContextProvider = ({ children }) => {
 		// listen for auth-state changes
 		onAuthStateChanged(auth, (user) => {
 			setCurrentUser(user)
+			setLoading(false)
 		})
 	}, [])
 
@@ -48,7 +50,12 @@ const AuthContextProvider = ({ children }) => {
 
 	return (
 		<AuthContext.Provider value={contextValues}>
-			{children}
+			{loading && (
+				<div id="spinner">
+					<PacmanLoader color={"#888"} size={50} />
+				</div>
+			)}
+			{!loading && children}
 		</AuthContext.Provider>
 	)
 }
