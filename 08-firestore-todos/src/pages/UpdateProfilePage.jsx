@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Row, Col, Form, Button, Card, Alert } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 
 const UpdateProfilePage = () => {
@@ -12,7 +12,6 @@ const UpdateProfilePage = () => {
 	const [loading, setLoading] = useState(false)
 	const [message, setMessage] = useState(null)
 	const { } = useAuthContext()
-	const navigate = useNavigate()
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
