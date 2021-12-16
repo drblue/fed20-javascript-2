@@ -20,7 +20,8 @@ const TodosPage = () => {
 
 	const queryRef = query(
 		collection(db, 'todos'),
-		where('owner', '==', currentUser.uid)
+		where('owner', '==', currentUser.uid),
+		orderBy('timestamp')
 	)
 	const { data, isLoading } = useFirestoreQueryData(['todos'], queryRef, {
 		idField: 'id',
