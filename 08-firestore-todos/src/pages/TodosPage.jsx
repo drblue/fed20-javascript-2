@@ -1,5 +1,10 @@
 import React from 'react'
-import { collection, orderBy, query } from 'firebase/firestore'
+import {
+	collection,
+	orderBy,
+	query,
+	where
+} from 'firebase/firestore'
 import { Button, Container, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useFirestoreQueryData } from '@react-query-firebase/firestore'
@@ -7,13 +12,15 @@ import CreateNewTodoForm from '../components/CreateNewTodoForm'
 import useGetTodos from '../hooks/useGetTodos'
 import { firebaseTimestampToString } from '../helpers/time'
 import { db } from '../firebase'
+import { useAuthContext } from '../contexts/AuthContext'
 
 const TodosPage = () => {
 	// const { data, loading } = useGetTodos()
+	const { currentUser } = useAuthContext()
 
 	const queryRef = query(
 		collection(db, 'todos'),
-		orderBy('timestamp')
+		where('owner', '==', currentUser.uid)
 	)
 	const { data, isLoading } = useFirestoreQueryData(['todos'], queryRef, {
 		idField: 'id',

@@ -2,10 +2,12 @@ import React, { useRef } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { db } from '../firebase'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { collection, addDoc, doc, serverTimestamp } from 'firebase/firestore'
+import { useAuthContext } from '../contexts/AuthContext'
 
 const CreateNewTodoForm = () => {
 	const inputTitle = useRef()
+	const { currentUser } = useAuthContext()
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -19,6 +21,7 @@ const CreateNewTodoForm = () => {
 			title: inputTitle.current.value,
 			completed: false,
 			timestamp: serverTimestamp(),
+			owner: currentUser.uid,
 		})
 
 		inputTitle.current.value = ''
