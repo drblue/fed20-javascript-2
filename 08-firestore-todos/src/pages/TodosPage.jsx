@@ -18,6 +18,8 @@ const TodosPage = () => {
 	const { data, isLoading } = useFirestoreQueryData(['todos'], queryRef, {
 		idField: 'id',
 		subscribe: true,
+	}, {
+		refetchOnMount: 'always',
 	})
 
 	return (
