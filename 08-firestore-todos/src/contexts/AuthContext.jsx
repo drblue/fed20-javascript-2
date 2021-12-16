@@ -2,8 +2,12 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import {
 	createUserWithEmailAndPassword,
 	onAuthStateChanged,
+	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signOut,
+	updateEmail,
+	updatePassword,
+	updateProfile,
 } from 'firebase/auth'
 import { PacmanLoader } from 'react-spinners'
 import { auth } from '../firebase'
@@ -30,6 +34,24 @@ const AuthContextProvider = ({ children }) => {
 		return signOut(auth)
 	}
 
+	const resetPassword = (email) => {
+		return sendPasswordResetEmail(auth, email)
+	}
+
+	const setEmail = (newEmail) => {
+		return updateEmail(currentUser, newEmail)
+	}
+
+	const setPassword = (newPassword) => {
+		return updatePassword(currentUser, newPassword)
+	}
+
+	const setDisplayName = (name) => {
+		return updateProfile(currentUser, {
+			displayName: name,
+		})
+	}
+
 	// add auth-state-observer here (somehow... 😈)
 	useEffect(() => {
 		// listen for auth-state changes
@@ -46,6 +68,10 @@ const AuthContextProvider = ({ children }) => {
 		login,
 		logout,
 		signup,
+		resetPassword,
+		setDisplayName,
+		setEmail,
+		setPassword,
 	}
 
 	return (
