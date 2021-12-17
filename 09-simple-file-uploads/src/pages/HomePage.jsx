@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
@@ -62,6 +63,8 @@ const HomePage = () => {
 	return (
 		<Container className="py-3">
 			<h1>Upload an image</h1>
+
+			{message && <Alert variant={message.type}>{message.msg}</Alert>}
 
 			<Form onSubmit={handleSubmit} onReset={handleReset}>
 				<Form.Group controlId="formImage" className="mb-3">
