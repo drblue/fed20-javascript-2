@@ -24,18 +24,16 @@ const HomePage = () => {
 
 			{isLoading && <p>Loading...</p>}
 
-			<Row>
+			<Row xs={1} sm={2} md={3} lg={4}>
 				{data && data.map(image => (
-					<Col sm={6} md={4} lg={3} key={image._id}>
-						<Card>
+					<Col key={image._id} className="d-flex">
+						<Card className="image-card">
+							<Card.Header>{image._id}</Card.Header>
 							<a href={image.url} target="_blank">
 								<Card.Img variant="top" src={image.url} />
 							</a>
 							<Card.Body>
-								<Card.Text>
-									<p>{image.name} ({image.size} b)</p>
-									<p>{image._id}</p>
-								</Card.Text>
+								<Card.Text>{image.name} ({image.size} b)</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
