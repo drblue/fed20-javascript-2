@@ -3,8 +3,10 @@ import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import { v4 as uuidv4 } from 'uuid'
+import { collection, addDoc } from 'firebase/firestore'
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
-import { storage } from '../firebase'
+import { db, storage } from '../firebase'
 
 const UploadImage = () => {
 	const [image, setImage] = useState(null)
@@ -27,8 +29,14 @@ const UploadImage = () => {
 			return
 		}
 
+		// generate a uuid for the file
+		const uuid = uuidv4()
+
+		// find file extension
+		const ext = image.name.substring(image.name.lastIndexOf('.') + 1)
+
 		// create a reference to upload the file to
-		const fileRef = ref(storage, image.name)
+		const fileRef = ref(storage, `images/${uuid}.${ext}`)
 
 		// upload image to fileRef
 		const uploadTask = uploadBytesResumable(fileRef, image)
@@ -37,7 +45,7 @@ const UploadImage = () => {
 		uploadTask.on('state_changed', (uploadTaskSnapshot) => {
 			setUploadProgress(Math.round((uploadTaskSnapshot.bytesTransferred / uploadTaskSnapshot.totalBytes) * 100))
 
-		}, (error) => {
+		}, (e) => {
 			console.log("NOT so great success, fail!", e)
 
 			setMessage({
@@ -45,16 +53,27 @@ const UploadImage = () => {
 				msg: `Image failed to upload due to the following error: ${e.message}`,
 			})
 		}, async () => {
+			// get download url to uploaded file
+			const url = await getDownloadURL(fileRef)
+
+			// get reference to collection 'images'
+			const collectionRef = collection(db, 'images')
+
+			// create document in db for the uploaded file
+			await addDoc(collectionRef, {
+				name: image.name,
+				path: fileRef.fullPath,
+				size: image.size,
+				type: image.type,
+				ext,
+				url,
+				uuid,
+			})
+
 			setMessage({
 				type: "success",
 				msg: "Image successfully uploaded 🤩",
 			})
-
-			// get download url to uploaded file
-			const url = await getDownloadURL(fileRef)
-
-			// set uploadedImageUrl to the url
-			setUploadedImageUrl(url)
 		})
 	}
 
