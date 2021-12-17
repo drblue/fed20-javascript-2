@@ -3,6 +3,7 @@ import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../firebase'
 
@@ -89,7 +90,16 @@ const HomePage = () => {
 				<Button type="reset" variant="danger">Reset</Button>
 			</Form>
 
-			{uploadProgress && (<p>Uploading... {uploadProgress} %</p>)}
+			{uploadProgress && (
+				<ProgressBar
+					now={uploadProgress}
+					label={`${uploadProgress}%`}
+					className="my-3"
+					animated
+					striped
+					variant="success"
+				/>
+			)}
 
 			{uploadedImageUrl && <img src={uploadedImageUrl} className="img-fluid" />}
 		</Container>
