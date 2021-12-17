@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { Container } from 'react-bootstrap'
-import HomePage from './pages/HomePage'
+import HomePage from './components/UploadImage'
 import Navigation from './pages/partials/Navigation'
 import PageNotFound from './pages/PageNotFound'
 
