@@ -36,3 +36,18 @@ h1, h2, h3, h4, h5, h6 {
 		align-items: center;
 	}
 }
+
+#upload-image-dropzone-wrapper {
+	background-color: #eee;
+	border-radius: 4px;
+	border: 2px dashed #ccc;
+
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	padding: 1.5rem 1rem;
+	text-align: center;
+
+	p {
+		margin-bottom: 0;
+	}
+}

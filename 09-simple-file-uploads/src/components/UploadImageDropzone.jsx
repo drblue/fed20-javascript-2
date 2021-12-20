@@ -9,7 +9,7 @@ const UploadImageDropzone = () => {
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
 	return (
-		<div {...getRootProps()}>
+		<div {...getRootProps()} id="upload-image-dropzone-wrapper">
 			<input {...getInputProps()} />
 
 			{
