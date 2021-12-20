@@ -9,6 +9,7 @@ const UploadImageDropzone = () => {
 	const { getRootProps, getInputProps, acceptedFiles, isDragActive, isDragAccept, isDragReject } = useDropzone({
 		accept: 'image/gif, image/jpeg, image/png, image/webp',
 		onDrop,
+		maxFiles: 1,
 	})
 
 	return (
@@ -21,7 +22,7 @@ const UploadImageDropzone = () => {
 			{
 				isDragActive
 					? (isDragAccept ? <p>Drop it like its hot 🔥!</p> : <p>We don't want that file 😡!</p>)
-					: <p>Give me some files 😋!</p>
+					: <p>Give me a file 😋!</p>
 			}
 
 			{acceptedFiles && (
