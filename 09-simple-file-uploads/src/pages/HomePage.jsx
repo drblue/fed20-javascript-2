@@ -1,6 +1,6 @@
 import React from 'react'
 import ImageGrid from '../components/ImageGrid'
-import UploadImage from '../components/UploadImage'
+import UploadImageDropzone from '../components/UploadImageDropzone'
 import useImages from '../hooks/useImages'
 
 const HomePage = () => {
@@ -14,7 +14,7 @@ const HomePage = () => {
 
 			<hr className="my-3" />
 
-			<UploadImage />
+			<UploadImageDropzone />
 		</>
 	)
 }
