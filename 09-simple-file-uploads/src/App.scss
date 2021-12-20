@@ -47,6 +47,18 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 1.5rem 1rem;
 	text-align: center;
 
+	&.drag-accept {
+		background-color: #d4edda;
+		border-color: #c3e6cb;
+		color: #155724;
+	}
+
+	&.drag-reject {
+		background-color: #f8d7da;
+		border-color: #f5c6cb;
+		color: #721c24;
+	}
+
 	p {
 		margin-bottom: 0;
 	}
