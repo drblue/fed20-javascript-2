@@ -1,9 +1,20 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback } from 'react'
+import Alert from 'react-bootstrap/Alert'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import { useDropzone } from 'react-dropzone'
+import useUploadImage from '../hooks/useUploadImage'
 
 const UploadImageDropzone = () => {
+	const uploadImage = useUploadImage()
+
 	const onDrop = useCallback(acceptedFiles => {
 		console.log("Got me zum files 😊", acceptedFiles)
+
+		if (!acceptedFiles.length) {
+			return
+		}
+
+		uploadImage.mutate(acceptedFiles[0])
 	}, [])
 
 	const { getRootProps, getInputProps, acceptedFiles, isDragActive, isDragAccept, isDragReject } = useDropzone({
@@ -25,7 +36,7 @@ const UploadImageDropzone = () => {
 					: <p>Give me a file 😋!</p>
 			}
 
-			{acceptedFiles && (
+			{acceptedFiles.length > 0 && (
 				<div className="accepted-files mt-2">
 					<ul className="list-unstyled">
 						{acceptedFiles.map(file => (
@@ -34,6 +45,11 @@ const UploadImageDropzone = () => {
 					</ul>
 				</div>
 			)}
+
+			{uploadImage.uploadProgress !== null && <ProgressBar variant="success" animated now={uploadImage.uploadProgress} />}
+
+			{uploadImage.isError && <Alert variant="warning">{uploadImage.error}</Alert>}
+			{uploadImage.isSuccess && <Alert variant="success">File uploaded successfully ✨!</Alert>}
 		</div>
 	)
 }
