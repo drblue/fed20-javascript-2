@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
-	padding: 1rem 1.25rem;
+	padding: 4rem 1.25rem;
 
 	&.drag-accept {
 		background-color: #d4edda;
@@ -42,7 +42,11 @@ h1, h2, h3, h4, h5, h6 {
 		color: #721c24;
 	}
 
-	p {
-		margin-bottom: 0;
+	.indicator {
+		font-size: 4rem;
+
+		p {
+			margin-bottom: 0;
+		}
 	}
 }

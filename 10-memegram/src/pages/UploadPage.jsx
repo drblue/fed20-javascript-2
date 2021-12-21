@@ -9,8 +9,11 @@ const UploadPage = () => {
 		console.log("got me some files", acceptedFiles)
 
 		if (!acceptedFiles.length) {
+			console.log("Not a valid file")
 			return
 		}
+
+		console.log("mmmm, file!")
 
 		// trigger upload of the first file
 	}, [])
@@ -31,16 +34,19 @@ const UploadPage = () => {
 				id="dropzone-wrapper"
 				className={`${isDragAccept ? 'drag-accept' : ''}${isDragReject ? 'drag-reject' : ''}`}
 			>
-				<input {...getInputProps()} id="dropzone" />
-				{
-					isDragActive
-						? (
-							isDragAccept
-								? <p>Drop it like it's funny!</p>
-								: <p>That's no meme we want here!</p>
-						)
-						: <p>Drop a funny meme here</p>
-				}
+				<input {...getInputProps()} />
+
+				<div className="indicator">
+					{
+						isDragActive
+							? (
+								isDragAccept
+									? <p>😋</p>
+									: <p>✋🏻</p>
+							)
+							: <p>🎤</p>
+					}
+				</div>
 			</div>
 		</div>
 	)
