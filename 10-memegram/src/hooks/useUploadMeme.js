@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import { useAuthContext } from '../contexts/AuthContext'
 import { db, storage } from '../firebase'
@@ -34,21 +34,56 @@ const useUploadMeme = () => {
 		// construct full path in storage to save image as
 		const storageFullPath = `memes/${currentUser.uid}/${storageFilename}`
 
-		// create a reference in storage to upload image to
-		const storageRef = ref(storage, storageFullPath)
+		try {
+			// create a reference in storage to upload image to
+			const storageRef = ref(storage, storageFullPath)
 
-		// start upload of image
-		const uploadTask = uploadBytesResumable(storageRef, image)
+			// start upload of image
+			const uploadTask = uploadBytesResumable(storageRef, image)
 
-		// attach upload observer
-		uploadTask.on('state_changed', (uploadTaskSnapshot) => {
-			// update progress
-			setProgress(
-				Math.round(
-					(uploadTaskSnapshot.bytesTransferred / uploadTaskSnapshot.totalBytes) * 100
+			// attach upload observer
+			uploadTask.on('state_changed', (uploadTaskSnapshot) => {
+				// update progress
+				setProgress(
+					Math.round(
+						(uploadTaskSnapshot.bytesTransferred / uploadTaskSnapshot.totalBytes) * 1000
+					) / 10
 				)
-			)
-		})
+			})
+
+			// wait for upload to be completed
+			await uploadTask.then()
+
+			// get download url to uploaded image
+			const url = await getDownloadURL(storageRef)
+
+			// create reference to db-collection 'memes'
+			const collectionRef = collection(db, 'memes')
+
+			// create document in db for the uploaded image
+			await addDoc(collectionRef, {
+				created: serverTimestamp(),
+				name: image.name,
+				owner: currentUser.uid,
+				path: storageRef.fullPath,
+				size: image.size,
+				type: image.type,
+				url,
+			})
+
+			// profit! 💰
+			setProgress(null)
+			setIsSuccess(true)
+			setIsMutating(false)
+
+		} catch (e) {
+			console.log("ERROR! DANGER WILL ROBINSON!", e)
+
+			setError(e.message)
+			setIsError(true)
+			setIsMutating(false)
+			setIsSuccess(false)
+		}
 	}
 
 	return {

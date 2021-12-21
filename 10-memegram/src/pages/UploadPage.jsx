@@ -45,6 +45,11 @@ const UploadPage = () => {
 							: <p>🎤</p>
 					}
 				</div>
+
+				{uploadMeme.progress !== null && <ProgressBar variant="success" animated now={uploadMeme.progress} />}
+
+				{uploadMeme.isError && <Alert variant="warning">{uploadMeme.error}</Alert>}
+				{uploadMeme.isSuccess && <Alert variant="success">Mmmm, that was a yummy file 🤩!</Alert>}
 			</div>
 		</div>
 	)
