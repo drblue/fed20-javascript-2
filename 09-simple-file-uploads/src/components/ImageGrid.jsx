@@ -21,7 +21,7 @@ const ImageGrid = ({ query }) => {
 	return (
 		<Row xs={1} sm={2} md={3} lg={4}>
 			{query.data && query.data.map(image => (
-				<Col key={image._id} className="d-flex">
+				<Col key={image._id} className="d-flex mb-4">
 					<ImageCard image={image} />
 				</Col>
 			))}
