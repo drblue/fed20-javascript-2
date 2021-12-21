@@ -11,9 +11,9 @@ const ImageCard = ({ image }) => {
 	return (
 		<Card className={`image-card ${deleteImageMutation.isMutating ? 'mutating' : ''}`}>
 			<Card.Header>
-				<div>
+				<span className="image-filename" title={image.name}>
 					{image.name}
-				</div>
+				</span>
 				<div className="card-actions">
 					<Button
 						variant="danger"
@@ -30,9 +30,11 @@ const ImageCard = ({ image }) => {
 				<Card.Img variant="top" src={image.url} />
 			</a>
 
-			<Card.Body>
-				<Card.Text>{image.name} ({image.size} b)</Card.Text>
-			</Card.Body>
+			<Card.Body></Card.Body>
+
+			<Card.Footer>
+				{Math.round(image.size / 1024)} kB
+			</Card.Footer>
 		</Card>
 	)
 }
