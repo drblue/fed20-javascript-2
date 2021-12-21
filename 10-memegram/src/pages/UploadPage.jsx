@@ -2,20 +2,18 @@ import React, { useCallback } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import { useDropzone } from 'react-dropzone'
+import useUploadMeme from '../hooks/useUploadMeme'
 
 const UploadPage = () => {
-	const onDrop = useCallback(acceptedFiles => {
-		// got me some files
-		console.log("got me some files", acceptedFiles)
+	const uploadMeme = useUploadMeme()
 
+	const onDrop = useCallback(acceptedFiles => {
 		if (!acceptedFiles.length) {
-			console.log("Not a valid file")
 			return
 		}
 
-		console.log("mmmm, file!")
-
 		// trigger upload of the first file
+		uploadMeme.mutate(acceptedFiles[0])
 	}, [])
 
 	const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
