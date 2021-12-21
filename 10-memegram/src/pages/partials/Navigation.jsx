@@ -23,6 +23,7 @@ const Navigation = () => {
 							currentUser ? (
 								<>
 									<NavLink to="/" className="nav-link">Home</NavLink>
+									<NavLink to="/upload" className="nav-link">Upload</NavLink>
 
 									<NavDropdown title={currentUser.displayName || currentUser.email} id="basic-nav-dropdown">
 										<NavLink to="/update-profile" className="dropdown-item">Update Profile</NavLink>

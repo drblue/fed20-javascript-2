@@ -10,6 +10,7 @@ import Navigation from './pages/partials/Navigation'
 import PageNotFound from './pages/PageNotFound'
 import SignupPage from './pages/SignupPage'
 import UpdateProfilePage from './pages/UpdateProfilePage'
+import UploadPage from './pages/UploadPage'
 
 function App() {
 	return (
@@ -27,6 +28,12 @@ function App() {
 					<Route path="/" element={
 						<RequireAuth redirectTo="/login">
 							<HomePage />
+						</RequireAuth>
+					} />
+
+					<Route path="/upload" element={
+						<RequireAuth redirectTo="/login">
+							<UploadPage />
 						</RequireAuth>
 					} />
 
