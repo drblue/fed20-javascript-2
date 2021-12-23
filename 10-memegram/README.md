@@ -4,8 +4,8 @@
 
 - Se alla uppladdade memes (inkl. mina egna)
 - Se enskild meme i en lightbox
-- Skapa konto
-- Ladda upp memes
+- ✅ Skapa konto
+- ✅ Ladda upp memes
 - Se mina uppladdade memes
 - Ta bort egna memes
 

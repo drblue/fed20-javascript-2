@@ -1,18 +1,19 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
-import { useAuthContext } from '../contexts/AuthContext'
+import useMemes from '../hooks/useMemes'
 
 const HomePage = () => {
-	const { currentUser } = useAuthContext()
+	const memesQuery = useMemes()
 
 	return (
 		<Container className="py-3">
-			<h1>Welcome!</h1>
-			{
-				currentUser
-					? <p>You are logged in as {currentUser.email} 🥳!</p>
-					: <p>Anomymous haxxer</p>
-			}
+			<h1>Latest memes</h1>
+
+			{memesQuery.data && memesQuery.data.map(meme => (
+				<div key={meme._id}>
+					<img src={meme.url} title={meme._id} />
+				</div>
+			))}
 		</Container>
 	)
 }
