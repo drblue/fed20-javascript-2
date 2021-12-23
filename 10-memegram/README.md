@@ -6,7 +6,7 @@
 - Se enskild meme i en lightbox
 - ✅ Skapa konto
 - ✅ Ladda upp memes
-- Se mina uppladdade memes
+- ✅ Se mina uppladdade memes
 - Ta bort egna memes
 
 ### Framtida funktioner

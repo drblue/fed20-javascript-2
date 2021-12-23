@@ -18,7 +18,7 @@ const useMemes = (params = {}) => {
 		? query(colMemesRef, where('owner', '==', currentUser.uid), orderBy('created', 'desc'))
 		: query(colMemesRef, orderBy('created', 'desc'))
 
-	const memesQuery = useFirestoreQueryData(['memes'], queryRef, {
+	const memesQuery = useFirestoreQueryData(queryKey, queryRef, {
 		idField: '_id',
 	})
 

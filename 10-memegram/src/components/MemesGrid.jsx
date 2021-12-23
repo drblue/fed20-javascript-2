@@ -1,8 +1,8 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
-import Card from 'react-bootstrap/Card'
 import Masonry from 'react-masonry-css'
 import BeatLoader from 'react-spinners/BeatLoader'
+import MemeCard from './MemeCard'
 
 const masonryBreakpoints = {
 	default: 4,
@@ -20,6 +20,10 @@ const MemesGrid = ({ query }) => {
 		return <BeatLoader color="#888" />
 	}
 
+	const refetchQuery = () => {
+		query.refetch()
+	}
+
 	return query.data && (
 		<Masonry
 			breakpointCols={masonryBreakpoints}
@@ -27,11 +31,7 @@ const MemesGrid = ({ query }) => {
 			columnClassName="memes-masonry-column"
 		>
 			{query.data.map(meme => (
-				<Card key={meme._id}>
-					<Card.Header>{meme.name}</Card.Header>
-					<Card.Img variant="top" src={meme.url} title={meme._id} />
-					<Card.Footer>{meme.owner}</Card.Footer>
-				</Card>
+				<MemeCard meme={meme} key={meme._id} onDelete={refetchQuery} />
 			))}
 		</Masonry>
 	)
