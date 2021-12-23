@@ -19,10 +19,13 @@ const Navigation = () => {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="ms-auto">
+
+						<NavLink to="/" className="nav-link">All memes</NavLink>
+
 						{
 							currentUser ? (
 								<>
-									<NavLink to="/" className="nav-link">Home</NavLink>
+									<NavLink to="/my-memes" className="nav-link">My memes</NavLink>
 									<NavLink to="/upload" className="nav-link">Upload</NavLink>
 
 									<NavDropdown title={currentUser.displayName || currentUser.email} id="basic-nav-dropdown">
@@ -38,6 +41,7 @@ const Navigation = () => {
 								</>
 							)
 						}
+
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

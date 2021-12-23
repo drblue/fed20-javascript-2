@@ -6,6 +6,7 @@ import RequireAuth from './components/RequireAuth'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import LogoutPage from './pages/LogoutPage'
+import MyMemesPage from './pages/MyMemesPage'
 import Navigation from './pages/partials/Navigation'
 import PageNotFound from './pages/PageNotFound'
 import SignupPage from './pages/SignupPage'
@@ -26,6 +27,12 @@ function App() {
 					<Route path="/signup" element={<SignupPage />} />
 
 					{/* Protected routes */}
+					<Route path="/my-memes" element={
+						<RequireAuth redirectTo="/login">
+							<MyMemesPage />
+						</RequireAuth>
+					} />
+
 					<Route path="/upload" element={
 						<RequireAuth redirectTo="/login">
 							<UploadPage />
