@@ -2,6 +2,7 @@ import React from 'react'
 import Alert from 'react-bootstrap/Alert'
 import Masonry from 'react-masonry-css'
 import BeatLoader from 'react-spinners/BeatLoader'
+import { SRLWrapper } from 'simple-react-lightbox'
 import MemeCard from './MemeCard'
 
 const masonryBreakpoints = {
@@ -25,15 +26,17 @@ const MemesGrid = ({ query }) => {
 	}
 
 	return query.data && (
-		<Masonry
-			breakpointCols={masonryBreakpoints}
-			className="memes-masonry"
-			columnClassName="memes-masonry-column"
-		>
-			{query.data.map(meme => (
-				<MemeCard meme={meme} key={meme._id} onDelete={refetchQuery} />
-			))}
-		</Masonry>
+		<SRLWrapper>
+			<Masonry
+				breakpointCols={masonryBreakpoints}
+				className="memes-masonry"
+				columnClassName="memes-masonry-column"
+			>
+				{query.data.map(meme => (
+					<MemeCard meme={meme} key={meme._id} onDelete={refetchQuery} />
+				))}
+			</Masonry>
+		</SRLWrapper>
 	)
 }
 

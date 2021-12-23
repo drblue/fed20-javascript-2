@@ -38,7 +38,10 @@ const MemeCard = ({ meme, onDelete }) => {
 				</div>
 			</Card.Header>
 
-			<Card.Img variant="top" src={meme.url} title={meme._id} />
+			<a href={meme.url}>
+				<Card.Img variant="top" src={meme.url} title={meme._id} />
+			</a>
+
 			<Card.Footer>{meme.owner}</Card.Footer>
 		</Card>
 	)
