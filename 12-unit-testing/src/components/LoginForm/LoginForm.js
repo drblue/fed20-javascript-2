@@ -1,12 +1,17 @@
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 function LoginForm() {
+	const [loading, setLoading] = useState(false)
 	const emailRef = useRef()
 	const emailConfirmRef = useRef()
 	const passwordRef = useRef()
 	const passwordConfirmRef = useRef()
+
+	if (loading) {
+		return (<p>Loading...</p>)
+	}
 
 	return (
 		<Form>

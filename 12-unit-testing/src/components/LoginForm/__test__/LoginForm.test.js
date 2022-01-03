@@ -2,6 +2,17 @@ import { render, screen } from '@testing-library/react'
 import LoginForm from '../LoginForm'
 
 describe("LoginForm rendering", () => {
+	it('does not show loading spinner', () => {
+		// Render the LoginForm component
+		render(<LoginForm />)
+
+		// Find element
+		const loadingSpinnerEl = screen.queryByText(/loading/i)
+
+		// Assert that the element does NOT exist in the document
+		expect(loadingSpinnerEl).not.toBeInTheDocument()
+	})
+
 	it('renders input fields', () => {
 		// Render the LoginForm component
 		render(<LoginForm />)
