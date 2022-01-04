@@ -1,0 +1,48 @@
+@import "bootstrap/scss/bootstrap";
+
+$bg-completed: #daf9da;
+$bg-completed-hover: #c4f6c4;
+$text-completed: #477a47;
+
+#App {
+	position: relative;
+}
+
+.fetching-spinner {
+	position: absolute;
+	right: 80px;
+	top: 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.5em;
+}
+
+#spinner {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+}
+
+.timestamp {
+	font-size: 0.5em;
+	text-align: right;
+}
+
+.completed {
+	background-color: $bg-completed;
+	color: $text-completed;
+	text-decoration: line-through;
+
+	&:focus,
+	&:hover {
+		background-color: $bg-completed-hover;
+		color: $text-completed;
+		text-decoration: line-through;
+	}
+}
+
+.todo-counter {
+	font-size: small;
+	color: $text-muted;
+}
