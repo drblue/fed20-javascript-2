@@ -21,3 +21,23 @@ test("can type into input field", () => {
 	// expect input field value to be what we just typed into it
 	expect(inputEl.value).toBe("A new todo")
 })
+
+test("input field empties after creating the todo", () => {
+	render(
+		<AddTodoForm
+			onNewTodo={() => {}}
+		/>
+	)
+
+	const inputEl = screen.getByRole("textbox")
+	const btnEl = screen.getByRole("button")
+
+	// type into input field
+	userEvent.type(inputEl, "A new todo")
+
+	// click the "Add" button
+	userEvent.click(btnEl)
+
+	// expect the input field to be empty
+	expect(inputEl.value).toBe("")
+})
