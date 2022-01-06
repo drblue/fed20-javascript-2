@@ -1,0 +1,14 @@
+.user-list {
+	.user-list-item {
+		display: flex;
+		align-items: center;
+
+		.user-photo {
+			margin-right: 1rem;
+		}
+		.user-info {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+}

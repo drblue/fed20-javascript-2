@@ -17,6 +17,7 @@ const Navigation = () => {
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="ms-auto">
 						<NavLink to="/todos" className="nav-link">Todos</NavLink>
+						<NavLink to="/users" className="nav-link">Users</NavLink>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
