@@ -11,11 +11,11 @@ const UserList = ({ users }) => {
 					return (
 						<ListGroup.Item
 							action
-							// as={Link}
+							as={Link}
 							className={`user-list-item`}
 							key={user.login.uuid}
 							role="listitem"
-							// to={`/users/${user.login.username}`}
+							to={`/users/${user.login.username}`}
 						>
 							<Image roundedCircle={true} fluid={true} src={user.picture.large} className="user-photo" />
 							<div className="user-info">

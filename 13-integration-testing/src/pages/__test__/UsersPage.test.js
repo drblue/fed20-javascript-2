@@ -1,8 +1,17 @@
 import { render, screen } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
 import UsersPage from '../UsersPage'
 
+const MockUsersPage = () => {
+	return (
+		<BrowserRouter>
+			<UsersPage />
+		</BrowserRouter>
+	)
+}
+
 test("can get at least one user", async () => {
-	render(<UsersPage />)
+	render(<MockUsersPage />)
 
 	// find any listitem elements
 	const listitemEls = await screen.findAllByRole("listitem")
