@@ -4,8 +4,14 @@ import TodosPage from '../TodosPage'
 
 const addTodos = (todos) => {
 	// find input elements
+	const inputNewTodoTitle = screen.getByPlaceholderText(/enter the new todo here/i)
+	const btnAddNewTodo = screen.getByRole("button", { name: /add/i })
 
 	// loop over todos, type into input field and click button for each todo
+	todos.forEach(todo_title => {
+		userEvent.type(inputNewTodoTitle, todo_title)
+		userEvent.click(btnAddNewTodo)
+	})
 }
 
 test("todo list is initally empty", () => {
@@ -21,13 +27,8 @@ test("todo list is initally empty", () => {
 test("can add a new todo", () => {
 	render(<TodosPage />)
 
-	// find elements
-	const inputNewTodoTitle = screen.getByPlaceholderText(/enter the new todo here/i)
-	const btnAddNewTodo = screen.getByRole("button", { name: /add/i })
-
-	// type into the form and click the add-button
-	userEvent.type(inputNewTodoTitle, "A new todo")
-	userEvent.click(btnAddNewTodo)
+	// create a new todo
+	addTodos(["A new todo"])
 
 	// assert that the new todo has been added to the list
 	const newTodoEl = screen.getByText("A new todo")
