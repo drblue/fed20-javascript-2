@@ -35,7 +35,6 @@ test("can add a new todo", () => {
 	expect(newTodoEl).toBeInTheDocument()
 })
 
-// bonus-points if test has support for existing todos
 test("should render multiple todos", () => {
 	render(<TodosPage />)
 
@@ -47,6 +46,23 @@ test("should render multiple todos", () => {
 
 	// assert that there are 3 listitems (one for each todo we created above)
 	expect(listitemEls.length).toBe(3)
+})
+
+test("should be able to add to existing list of todos", () => {
+	render(<TodosPage />)
+
+	// create initial todos
+	addTodos(["Todo 1", "Todo 2", "Todo 3"])
+
+	// find all elements with role "listitem"
+	const initialTodoEls = screen.getAllByRole("listitem")  // <-- todos before adding more
+
+	// add more todos
+	addTodos(["Todo 4", "Todo 5"])
+
+	// assert that 2 new todos has been added
+	const todoEls = screen.getAllByRole("listitem")  // <-- todos + the new ones
+	expect(todoEls.length).toBe(initialTodoEls.length + 2)
 })
 
 test("counter is updated when a new todo is added", () => {
