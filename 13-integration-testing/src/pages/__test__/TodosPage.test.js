@@ -66,5 +66,15 @@ test("should be able to add to existing list of todos", () => {
 })
 
 test("counter is updated when a new todo is added", () => {
-	// fix me also
+	render(<TodosPage />)
+
+	// create multiple todos
+	addTodos(["Todo 1", "Todo 2", "Todo 3"])
+
+	// assert that counter states "3 todos left"
+	const counterEl = screen.getByTestId("todo-counter")
+	expect(counterEl).toHaveTextContent(/3 todos left/i)
+
+	// const counterEl = screen.getByText(/3 todos left/i)
+	// expect(counterEl).toBeInTheDocument()
 })

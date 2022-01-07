@@ -8,7 +8,7 @@ const TodoCounter = ({ count }) => {
 		: <span>You have 0 todos 🥳</span>
 
 	return (
-		<div className="todo-counter mt-2">
+		<div className="todo-counter mt-2" data-testid="todo-counter">
 			{msg}
 		</div>
 	)
