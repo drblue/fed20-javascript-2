@@ -1,0 +1,27 @@
+@import "bootstrap/scss/bootstrap";
+
+$bg-completed: #daf9da;
+$bg-completed-hover: #c4f6c4;
+$text-completed: #477a47;
+
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.5em;
+}
+
+.completed {
+	background-color: $bg-completed;
+	color: $text-completed;
+	text-decoration: line-through;
+
+	&:focus,
+	&:hover {
+		background-color: $bg-completed-hover;
+		color: $text-completed;
+		text-decoration: line-through;
+	}
+}
+
+.todo-counter {
+	font-size: small;
+	color: $text-muted;
+}
