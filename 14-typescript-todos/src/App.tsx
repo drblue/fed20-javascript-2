@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Container } from 'react-bootstrap'
+import AddTodoForm from './components/AddTodoForm'
 import TodoList from './components/TodoList'
 import { Todo } from './shared/interfaces'
 import { Todos } from './shared/types'
@@ -22,6 +23,7 @@ const App = () => {
 		<Container id="App" className="py-3">
 			<h1>Todos</h1>
 
+			<AddTodoForm />
 			<TodoList todos={todos} onToggleTodo={handleToggleTodo} />
 		</Container>
 	)
