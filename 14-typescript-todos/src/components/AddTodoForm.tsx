@@ -7,13 +7,13 @@ import { Todo } from '../shared/interfaces'
 import { v4 as uuid } from 'uuid'
 
 interface Props {
-
+	onNewTodo: (todo: Todo) => void
 }
 
-const AddTodoForm: React.FC<Props> = () => {
+const AddTodoForm: React.FC<Props> = ({ onNewTodo }) => {
 	const inputTitle = useRef<HTMLInputElement>(null)
 
-	const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+	const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
 		e.preventDefault()
 
 		if (!inputTitle.current?.value.length) {
@@ -28,7 +28,7 @@ const AddTodoForm: React.FC<Props> = () => {
 		}
 
 		// pass `todo` to parent handler via props
-
+		await onNewTodo(todo)
 
 		// clear input field
 		inputTitle.current.value = ''

@@ -14,6 +14,10 @@ const initialTodos: Todos = [
 const App = () => {
 	const [todos, setTodos] = useState(initialTodos)
 
+	const handleNewTodo = async (todo: Todo) => {
+		setTodos([...todos, todo])
+	}
+
 	const handleToggleTodo = (todo: Todo) => {
 		todo.completed = !todo.completed
 		setTodos([...todos])
@@ -23,7 +27,7 @@ const App = () => {
 		<Container id="App" className="py-3">
 			<h1>Todos</h1>
 
-			<AddTodoForm />
+			<AddTodoForm onNewTodo={handleNewTodo} />
 			<TodoList todos={todos} onToggleTodo={handleToggleTodo} />
 		</Container>
 	)
