@@ -13,7 +13,7 @@ interface Props {
 const AddTodoForm: React.FC<Props> = ({ onNewTodo }) => {
 	const inputTitle = useRef<HTMLInputElement>(null)
 
-	const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+	const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
 		e.preventDefault()
 
 		if (!inputTitle.current?.value.length) {
@@ -28,7 +28,7 @@ const AddTodoForm: React.FC<Props> = ({ onNewTodo }) => {
 		}
 
 		// pass `todo` to parent handler via props
-		await onNewTodo(todo)
+		onNewTodo(todo)
 
 		// clear input field
 		inputTitle.current.value = ''

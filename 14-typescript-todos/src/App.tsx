@@ -14,7 +14,7 @@ const initialTodos: Todos = [
 const App = () => {
 	const [todos, setTodos] = useState(initialTodos)
 
-	const handleNewTodo = async (todo: Todo) => {
+	const handleNewTodo = (todo: Todo) => {
 		setTodos([...todos, todo])
 	}
 
